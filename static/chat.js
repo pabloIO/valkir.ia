@@ -8,6 +8,7 @@
 
     chatForm.onsubmit = function(e){
         e.preventDefault();
+        chat.insertAdjacentHTML('beforeend', '<li>'+messageText.value+'</li>');        
         io.emit('new message', messageText.value);
         messageText.value=null;
         return false;
@@ -22,8 +23,9 @@
         alert(newUser.message);
     });
 
-    io.on('user says', function(userSays){
-        chat.insertAdjacentHTML('beforeend', '<li>'+userSays+'</li>');
+    io.on('user_says:msg', function(data){
+        console.log(data);
+        chat.insertAdjacentHTML('beforeend', '<li>'+data+'</li>');
     });
 
     io.on('bye bye user', function(byeByeUser){

@@ -35,3 +35,7 @@ html { font: 16px Helvetica, Arial; }
 }
 
 #chat li:nth-child(odd) { background-color: #DDD; }
+
+body{
+	background: #EEE;
+}

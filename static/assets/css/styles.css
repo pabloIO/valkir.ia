@@ -16,7 +16,40 @@ svg {
   .messageBody{
     color: white;
   }
+
   
+.form-chat {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: .5rem;
+	font-size: 0;
+	background-color: #1D1D1D;
+}
+  
+  .input-mensaje{
+    background: transparent;
+    /* font-size: 0.8em; */
+    line-height: 2.5em;
+    font-weight: bold;
+    color: white;
+  }
+  .input-mensaje:hover, .input-mensaje:focus{
+    background: transparent;
+    /* font-size: 2em;
+    line-height: 2.5em;
+    font-weight: bold; */
+  }
+
+  .button-enviar{
+    width: 100%;
+    background: rgb(36, 6, 65);
+    font-weight: bold;
+  }
+  .button-enviar:hover{
+    background: rgb(82, 37, 124);
+  }
+
   .background {
     width: 100vw;
     height: 100vh;

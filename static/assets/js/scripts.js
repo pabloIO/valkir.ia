@@ -4,22 +4,23 @@ function login(){
     objetoVariables = {
         username: $('#txt_user_name').val()
     }
-    login = ajaxPeticionJS('POST', 'http://localhost:3000/login', objetoVariables);
-    console.log(login);
+    ajaxPeticionJS('POST', 'http://localhost:3000/login', objetoVariables);
 }
+
 
 //Funcion ajax reutilizable
 function ajaxPeticionJS(metodo, ruta, request = []){
     // alert(request);
-    var resultado;
     $.ajax({
-        type: metodo,
+        method: metodo,
         url : ruta,
         data : request,
-        success :            
-            function(resul){
-                resultado = resul;
-            }
+    })
+    .done(function(response){
+        if(response){
+            LocalStorage.setKeys(response);
+            window.location.href = response.url_to;
+        }
     });
-    return resultado;
 }
+

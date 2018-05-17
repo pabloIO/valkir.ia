@@ -26,6 +26,7 @@ class LoginCtrl(object):
                 res['token'] = uuid.uuid4().hex,
                 res['socket_channel'] = exists.canal_socket,
                 res['_conversation_id'] = exists._conversation_id 
+                res['url_to'] = str.format('{0}:{1}/chat_room',  'http://localhost', env['PORT'])
             else:
                 if not request['username']:
                     res['msg'] = 'Debes introducir el nombre de usuario'
@@ -43,7 +44,8 @@ class LoginCtrl(object):
                 res['token'] = uuid.uuid4().hex
                 res['socket_channel'] = newUser.canal_socket,
                 res['_conversation_id'] = newUser._conversation_id 
-        except Exception as e:
+                res['url_to'] = str.format('{0}:{1}/chat_room', 'http://localhost', env['PORT'])
+        except IntegrityError as e:
             print(e)
             db.session.rollback()
             res['msg'] = 'Nombre de usuario existente'

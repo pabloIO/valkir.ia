@@ -27,6 +27,7 @@
               </div>
               <div class="cell grid-x align-center-middle content-input">
                      <input id="txt_user_name" class="usernameInput" type="text" onkeyup="randomizarAvatar()" maxlength="14" />
+                     <button onclick="login()">Entrar</button>
               </div>
           </div>
       </div>
@@ -37,6 +38,7 @@
     <!-- imagen randomica SVG -->
     <script src="{{ url_for('static', filename = 'assets/js/avatar.js') }}"></script>
     <!-- Funciones de interacción con el usuario -->
+	<script src="{{ url_for('static', filename = 'assets/js/localStorage.js') }}"></script>
     <script src="{{ url_for('static', filename = 'assets/js/scripts.js') }}"></script>
 </body>
 </html>

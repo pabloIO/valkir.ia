@@ -1,7 +1,7 @@
 'use strict';
 var LocalStorage = (function(){
     /**
-     * @keys: [id, username, token, socket_channel, _conversation_id]
+     * @keys: [id, username, token, socket_channel, _conversation_id, sesion]
      */ 
     let keys = {};
     let _storage = window.localStorage;
@@ -34,6 +34,15 @@ var LocalStorage = (function(){
      */
     function getKey(key){
         return _storage.getItem(key);
+    }
+
+    function getKeys(){
+        const keys = ['id', 'username', 'token', 'socket_channel', '_conversation_id', 'sesion'];
+        let data = [];
+        for (let index = 0; index < keys.length; index++) {
+            data.push(getKey(keys[i]));
+        }
+        return data;
     }
 
     return{

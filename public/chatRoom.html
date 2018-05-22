@@ -4,18 +4,22 @@
 	<meta charset="UTF-8">
 	<title>Chat con Express y Socket.IO</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/foundation.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/styles.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/styles_message.css') }}">
+
+	<!-- <link rel="stylesheet" href="../static/assets/css/styles.css"> -->
 </head>
 <body>
 	<div class="background"></div>
-	<ul id="messages"></ul>
+	<ul id="messages">
+		
+	</ul>
 	<form id="chat-form" class="form-chat">
 		<div class="grid-x grid-margin-x">
 			<div class="cell medium-10">
 				<input class="inputMessage" type="text" id="message-text" autocomplete="off" required>
 			</div>
-			<div class="cell medium-2" style="margin-top:20px;	">
-				<button type="submit" class="button button-enviar">ENVIAR MENSAJE</button>
+			<div class="cell medium-2">
+				<button type="submit" class="button button-enviar" onclick="ejemplo_mensaje()">ENVIAR MENSAJE</button>
 			</div>
 		</div>
 	</form>
@@ -24,6 +28,26 @@
 	<script src="{{ url_for('static', filename = 'assets/js/background.js') }}"></script>
 	<script src="{{ url_for('static', filename = 'assets/js/localStorage.js') }}"></script>
 	<script src="{{ url_for('static', filename = 'assets/js/SocketChat.js') }}"></script>
+
+	<script>
+
+		//Función que emula enviar mensajes para visualizar estilos en el DOM al realizar acción "Click" en botón "Enviar mensaje"
+		function ejemplo_mensaje(){
+			$('#messages').append(
+				`
+				<li class="message">
+					<span class="username" style="color: ${rba_random()};">ctapia</span>
+					<span class="messageBody" >Mensaje de prueba</span>
+				</li>
+				`
+			);
+		}
+	
+		function rba_random(){
+			var r = function () { return Math.floor(Math.random()*256) };
+			return "rgb(" + r() + "," + r() + "," + r() + ")";
+		}
+	</script>
 
 </body>
 </html>

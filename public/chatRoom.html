@@ -19,7 +19,7 @@
 				<input class="inputMessage" type="text" id="message-text" autocomplete="off" required>
 			</div>
 			<div class="cell medium-2">
-				<button type="submit" class="button button-enviar" onclick="ejemplo_mensaje()">ENVIAR MENSAJE</button>
+				<button type="submit" class="button button-enviar" >ENVIAR MENSAJE</button>
 			</div>
 		</div>
 	</form>
@@ -29,7 +29,7 @@
 	<script src="{{ url_for('static', filename = 'assets/js/localStorage.js') }}"></script>
 	<script src="{{ url_for('static', filename = 'assets/js/SocketChat.js') }}"></script>
 
-	<script>
+	<!-- <script>
 
 		//Función que emula enviar mensajes para visualizar estilos en el DOM al realizar acción "Click" en botón "Enviar mensaje"
 		function ejemplo_mensaje(){
@@ -47,7 +47,7 @@
 			var r = function () { return Math.floor(Math.random()*256) };
 			return "rgb(" + r() + "," + r() + "," + r() + ")";
 		}
-	</script>
+	</script> -->
 
 </body>
 </html>

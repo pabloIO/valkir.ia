@@ -20,17 +20,19 @@ $(function() {
     ///////////////////  FIN  ///////////////////
   
     // Prompt for setting a userName
+    var user_conversation = [];
     var connected = true;
     var typing = false;
     var lastTypingTime;
     // var $currentInput = $userNameInput.focus();
-  
+    
     var socket = io('http://localhost:3000');
     var channel = LocalStorage.getKey('socket_channel');
     var userName = LocalStorage.getKey('username');
     var sesion_id = LocalStorage.getKey('sesion');
     var _conversation_id = LocalStorage.getKey('_conversation_id');
     var user_id = LocalStorage.getKey('id');
+    getConversation(user_id);
     // console.log(userName)
     // console.log(`joining to room ${channel}`);
     socket.emit('create_room', {room: channel});
@@ -39,7 +41,32 @@ $(function() {
     socket.on('connect', function(){
         console.log('succesfull python connection');    
     });
-  
+    
+
+    function getConversation(id){
+      // alert(request);
+      let user_id = id;
+      var conv = null;
+      $.ajax({
+          method: 'GET',
+          url : `http://localhost:3000/user/${user_id}/conversation`,
+          async: false,
+          success: function(response){
+                if(response.success){
+                // conversation = response.conversation;
+
+                user_conversation = response.conversation;
+                for (let i = 0; i < user_conversation.length; i++) {
+                  addChatMessage(user_conversation[i].user_res);
+                  addChatMessage(user_conversation[i].bot_res);
+                }
+            }else{
+                alert(response.msg);
+            }
+          }
+      });
+    }
+
     function addParticipantsMessage (data) {
       var message = '';
       if (data.numUsers === 1) {
@@ -132,7 +159,7 @@ $(function() {
         $typingMessages.remove();
       }
   
-      var $userNameDiv = $('<span class="userName"/>')
+      var $userNameDiv = $('<span class="username"/>')
         .text(data.userName)
         .css('color', getuserNameColor(data.userName));
       var $messageBodyDiv = $('<span class="messageBody">')
@@ -140,7 +167,7 @@ $(function() {
   
       var typingClass = data.typing ? 'typing' : '';
       var $messageDiv = $('<li class="message"/>')
-        .data('userName', data.userName)
+        .data('username', data.userName)
         .addClass(typingClass)
         .append($userNameDiv, $messageBodyDiv);
   
@@ -201,7 +228,9 @@ $(function() {
       if (connected) {
         if (!typing) {
           typing = true;
-          socket.emit('typing');
+          socket.emit('typing', {
+            userName: userName,
+            room: channel});
         }
         lastTypingTime = (new Date()).getTime();
   
@@ -209,7 +238,10 @@ $(function() {
           var typingTimer = (new Date()).getTime();
           var timeDiff = typingTimer - lastTypingTime;
           if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
-            socket.emit('stop typing');
+            socket.emit('stop typing', {
+              userName: userName,
+              room: channel
+            });
             typing = false;
           }
         }, TYPING_TIMER_LENGTH);
@@ -239,7 +271,10 @@ $(function() {
     form.submit(function(evt){
       evt.preventDefault();
       sendMessage();
-      socket.emit('stop typing');
+      socket.emit('stop typing', {
+        userName: userName,
+        room: channel
+      });
     });
     
     // $window.keydown(function (event) {
@@ -321,6 +356,7 @@ $(function() {
     socket.on('reconnect', function(){
       // log('you have been reconnected');
       if (userName) {
+        socket.emit('create_room', {room: channel});        
         socket.emit('add_user', {usr: userName});
       }
     });

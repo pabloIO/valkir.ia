@@ -138,7 +138,7 @@ ul {
   font-size: 1.5em;
 }
 
-.username {
+.userName {
   float: left;
   font-weight: 700;
   overflow: hidden;
@@ -146,6 +146,12 @@ ul {
   text-align: right;
   font-size: 1.5em;
 }
+
+.message_chatterbot{
+  float: right;
+  margin-right: 1.5em;
+}
+
 
 /* Input */
 

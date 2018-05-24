@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/foundation.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/styles_login.css') }}">
 
     <!-- importación de jQuery -->
     <script src="../static/assets/js/jquery.js"></script>
@@ -27,17 +27,19 @@
               </div>
               <div class="cell grid-x align-center-middle content-input">
                      <input id="txt_user_name" class="usernameInput" type="text" onkeyup="randomizarAvatar()" maxlength="14" />
-                     <button onclick="login()">Entrar</button>
+                     <button onclick="login()">Empezar</button>
               </div>
           </div>
       </div>
     </div>
-    
+
+
     <!-- Estilos de la vista -->
     <script src="{{ url_for('static', filename = 'assets/js/background.js') }}"></script>
     <!-- imagen randomica SVG -->
     <script src="{{ url_for('static', filename = 'assets/js/avatar.js') }}"></script>
     <!-- Funciones de interacción con el usuario -->
+
 	<script src="{{ url_for('static', filename = 'assets/js/localStorage.js') }}"></script>
     <script src="{{ url_for('static', filename = 'assets/js/scripts.js') }}"></script>
 </body>

@@ -6,12 +6,20 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/foundation.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/styles_message.css') }}">
 
-	<!-- <link rel="stylesheet" href="../static/assets/css/styles.css"> -->
 </head>
 <body>
 	<div class="background"></div>
 	<ul id="messages">
-		
+		<li class="message">
+			<span class="userName" style="color: red">ctapia</span>
+			<span class="messageBody" >Mensaje de prueba</span>
+		</li>
+		<!-- Para la que un mensaje posea los estilos de alineacion derecham asignar la clase: "message_chatterbot" 
+		elemento li -->
+		<li class="message_chatterbot">
+			<span class="userName" style="color: blue">conejita_3.1416</span>
+			<span class="messageBody" >Mensaje de prueba</span>
+		</li>
 	</ul>
 	<form id="chat-form" class="form-chat">
 		<div class="grid-x grid-margin-x">

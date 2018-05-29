@@ -3,23 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Chat con Express y Socket.IO</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/foundation.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/styles_message.css') }}">
+	<!-- <link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/foundation.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/styles_message.css') }}"> -->
+	<link rel="stylesheet" href="../static/assets/css/foundation.css">
+	<link rel="stylesheet" href="../static/assets/css/styles_message.css">
 
 </head>
 <body>
 	<div class="background"></div>
-	<ul id="messages">
+	<ul class="messages" id="messages">
 		<li class="message">
-			<span class="userName" style="color: red">ctapia</span>
-			<span class="messageBody" >Mensaje de prueba</span>
+			<div class="content-span">
+				<span class="userName" style="color: red">ctapia: </span>
+				<span class="messageBody" >Mensaje de prueba Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam fugiat repudiandae non ducimus facere adipisci exercitationem sunt harum quia, facilis nostrum sequi eveniet inventore quidem eos beatae minima doloremque. Commodi?</span>
+			</div>
 		</li>
 		<!-- Para la que un mensaje posea los estilos de alineacion derecham asignar la clase: "message_chatterbot" 
 		elemento li -->
 		<li class="message_chatterbot">
-			<span class="userName" style="color: blue">conejita_3.1416</span>
-			<span class="messageBody" >Mensaje de prueba</span>
+			<div class="content-span">
+				<span class="userName" style="color: blue">conejita_3.1416: </span>
+				<span class="messageBody" >Mensaje de prueba Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae error praesentium dolorem sequi. Vel libero quidem odio facere accusantium commodi rem quae illum minus incidunt qui, nobis sunt amet suscipit?</span>
+			</div>
 		</li>
+		<li class="message">
+			<div class="content-span">
+				<span class="userName" style="color: red">ctapia</span>
+				<span class="messageBody" >Mensaje de prueba Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam fugiat repudiandae non ducimus facere adipisci exercitationem sunt harum quia, facilis nostrum sequi eveniet inventore quidem eos beatae minima doloremque. Commodi?</span>
+			</div>
+		</li>
+		
 	</ul>
 	<form id="chat-form" class="form-chat">
 		<div class="grid-x grid-margin-x">

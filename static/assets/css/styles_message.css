@@ -100,9 +100,7 @@ ul {
 
 /* Font */
 
-.messages {
-  font-size: 150%;
-}
+
 
 .inputMessage {
   font-size: 100%;
@@ -123,10 +121,17 @@ ul {
 }
 
 .messages {
-  height: 100%;
+  font-size: 80%;
+  height: 80%;
   margin: 0;
   overflow-y: scroll;
   padding: 10px 20px 10px 20px;
+  /* color: red; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* align-content: space-between;  */
+  
 }
 
 .message.typing .messageBody {
@@ -147,11 +152,31 @@ ul {
   font-size: 1.5em;
 }
 
-.message_chatterbot{
-  float: right;
-  margin-right: 1.5em;
+.message{
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  margin-top: 10px;
 }
 
+.message_chatterbot{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  margin-top: 10px;
+}
+
+.content-span{
+  border: 1px solid rgba(0,0,0, 0.45);
+  width: 40%;
+  border-radius: 15px;
+  background: rgba(0,0,0, 0.45);
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+
+}
 
 /* Input */
 
@@ -231,3 +256,5 @@ ul, li {
   font-size: 1em;
   background: rgb(130, 25, 228);
 }
+
+

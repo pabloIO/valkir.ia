@@ -3,7 +3,7 @@ import os
 
 env = {
     'PORT'      : 3000,
-    'HOST'      : '127.0.0.1',
+    'HOST'      : '0.0.0.0',
     'APP_ENV'   : 'DEV',
     'APP_SECRET': 'c3ds1bN@de',
     'APP'       : Flask(__name__, template_folder="public"),  
@@ -16,5 +16,5 @@ env = {
         'DB_NAME': 'valkiria_chatbot_mongo',
         'DB_URI' : 'mongodb://localhost:27017',
     },
-    'CHILD_TIME_WRITING_FACTOR': 0.6
+    'CHILD_TIME_WRITING_FACTOR': 0.9
 }

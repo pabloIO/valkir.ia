@@ -2,7 +2,7 @@
 var ChatModel = (function(){
     /**
      * @keys: [id, username, token, socket_channel, _conversation_id, sesion]
-     */ 
+     */
     let conversation = [];
     let _storage = LocalStorage;
 
@@ -12,7 +12,7 @@ var ChatModel = (function(){
         var conv = null;
         $.ajax({
             method: 'GET',
-            url : `http://localhost:3000/user/${user_id}/conversation`,
+            url : `http://192.168.0.107:3000/user/${user_id}/conversation`,
             async: false,
             success: function(response){
                 if(response){
@@ -29,4 +29,3 @@ var ChatModel = (function(){
         getConversation: getConversation,
     };
 })();
-

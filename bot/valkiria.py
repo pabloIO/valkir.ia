@@ -23,16 +23,21 @@ class Bot(ChatBot):
                                 }
                             ],
                         )
+        self.trainDataPath = 'local_data/conversacion_valkiria.csv'
         self.trainBot()
     def trainBot(self):
         from chatterbot.trainers import ListTrainer
+        conversation = self.loadConversation(self.trainDataPath)
         self.set_trainer(ListTrainer)
-        self.train([
-            'Hola ¿como estas?',
-            'Hola, estoy bien, ¿y tu?',
-            'Pues ando con problemas', 
-            '¿Por que?',
-            'He reprobado una materia en la Universidad',
-            'Que mal, pero no te desanimes, hay muchas mas oportunidades',
-            'Muchas gracias'
-        ])
+        self.train(conversation)
+    def loadConversation(self, filename):
+        import csv
+        conversations = []
+        with open(filename, 'r') as conversation_csv:
+            reader = csv.reader(conversation_csv, delimiter=",", )
+            next(reader)
+            for index, c in enumerate(reader):
+                # print(c)
+                conversations.append(c[1])
+                conversations.append(c[2])
+        return conversations

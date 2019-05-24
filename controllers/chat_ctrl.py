@@ -24,6 +24,7 @@ class ChatCtrl(object):
             time_to_respond = num_words * delay_factor
             emit('typing', {
                 'userName': 'valkiria',
+                'type': 'valkiria'
                 },
                 room=data['room'])
             ## retrasar evento typing por el tiempo
@@ -53,7 +54,8 @@ class ChatCtrl(object):
             ## emitir evento user_says:msg
             emit('user_says:msg', {
                 'userName': 'valkiria',
-                'message': response
+                'message': response,
+                'type': 'valkiria'
             }, room=data['room'])
     @staticmethod
     def getConversation(user_id, db, response):
@@ -65,7 +67,7 @@ class ChatCtrl(object):
             db_conversations = database.Conversacion.query.filter_by(usuarios_id=user_id).all()
             user_conversation =  []
             for conversation in db_conversations:
-                print(conversation.fecha_creacion)
+                # print(conversation.fecha_creacion)
                 c = {
                     'id': conversation.id,
                     'created_at': str(conversation.fecha_creacion),
@@ -86,6 +88,29 @@ class ChatCtrl(object):
             res['msg'] = 'Hubo un error al obtener la conversación'
         finally:
             print(res)
+            return response(json.dumps(res), mimetype='application/json')            
+    @staticmethod
+    def getConversationText(user_id, db, response):
+        try:
+            res = {
+                'success': False
+            }
+            user = database.Usuarios.query.get(user_id)
+            db_conversations = database.Conversacion.query.filter_by(usuarios_id=user_id).all()
+            user_conversation =  []
+            for conversation in db_conversations:
+                # print(conversation.fecha_creacion)
+                c = {
+                    'id': conversation.id,
+                    'created_at': str(conversation.fecha_creacion),
+                    'message': conversation.texto,
+                }
+                user_conversation.append(c)
+            res['success'] = True            
+            res['conversation'] = user_conversation
+        except Exception as e:
+            res['msg'] = 'Hubo un error al obtener la conversación'
+        finally:
             return response(json.dumps(res), mimetype='application/json')            
 
         

@@ -33,17 +33,21 @@ def chat_room():
 @app.route("/login", methods=['POST'])
 @cross_origin(origin='localhost', headers=['Content-Type', 'Authorization'])
 def login():
+    print(request.form)
     return login_ctrl.LoginCtrl.login(db, request.form, Response)
 
 @app.route('/user/<user_id>/conversation')
 def show_user_conversation(user_id):
     return chat_ctrl.ChatCtrl.getConversation(user_id, db, Response)
-    
+
+@app.route('/user/<user_id>/conversation/user-text')
+def show_conversation_text(user_id):
+    return chat_ctrl.ChatCtrl.getConversationText(user_id, db, Response)
 
 '''
     @socket.on event create_room: Creates individual room for user
     @param Dict data: Dictionary containing data with room number
-    @return socket.send event 
+    @return socket.send event
 '''
 @socketio.on('create_room')
 def handle_create_room(data):
@@ -52,10 +56,6 @@ def handle_create_room(data):
     print('#####################')
     print('#####################')
     print(str.format('user has entered to room: {0}', room))
-    print()
-    print()
-    print()
-    print()
     join_room(room)
 
 @socketio.on('add_user')
@@ -67,7 +67,6 @@ def handle_add_user(username):
     global addedUser
 
     addedUser = True
-    print(username)
     ## add the client's username to the global list
     name = username['usr']
     if(name not in usernames.keys()):
@@ -78,22 +77,26 @@ def handle_add_user(username):
         emit('user_joined', {
         'username': name,
         'numUsers': numUsers,
+        'type': 'user'
         }, broadcast=True)
 
 @socketio.on('typing')
 def handle_typing(data):
-    emit('typing', 
+    emit('typing',
         {
             'userName': data['userName']
-        }, 
+        },
         room=data['room'])
 
 @socketio.on('stop typing')
 def handle_stop_typing(data):
-    emit('stop typing', 
+    print(data)
+    print(data)
+    print(data)
+    emit('stop typing',
         {
             'userName': data['userName']
-        }, 
+        },
         room=data['room'])
 
 @socketio.on('new_message')

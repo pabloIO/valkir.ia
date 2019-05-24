@@ -155,14 +155,14 @@ ul {
 .message{
   width: 100%;
   display: flex;
-  justify-content: left;
+  justify-content: right;
   margin-top: 10px;
 }
 
 .message_chatterbot{
   width: 100%;
   display: flex;
-  justify-content: right;
+  justify-content: left;
   margin-top: 10px;
 }
 

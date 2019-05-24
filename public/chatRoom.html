@@ -12,15 +12,9 @@
 <body>
 	<div class="background"></div>
 	<ul class="messages" id="messages">
-		<li class="message">
-			<div class="content-span">
-				<span class="userName" style="color: red">ctapia: </span>
-				<span class="messageBody" >Mensaje de prueba Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam fugiat repudiandae non ducimus facere adipisci exercitationem sunt harum quia, facilis nostrum sequi eveniet inventore quidem eos beatae minima doloremque. Commodi?</span>
-			</div>
-		</li>
-		<!-- Para la que un mensaje posea los estilos de alineacion derecham asignar la clase: "message_chatterbot" 
+		<!-- Para la que un mensaje posea los estilos de alineacion derecham asignar la clase: "message_chatterbot"
 		elemento li -->
-		<li class="message_chatterbot">
+		<!-- <li class="message_chatterbot">
 			<div class="content-span">
 				<span class="userName" style="color: blue">conejita_3.1416: </span>
 				<span class="messageBody" >Mensaje de prueba Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae error praesentium dolorem sequi. Vel libero quidem odio facere accusantium commodi rem quae illum minus incidunt qui, nobis sunt amet suscipit?</span>
@@ -31,8 +25,8 @@
 				<span class="userName" style="color: red">ctapia</span>
 				<span class="messageBody" >Mensaje de prueba Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam fugiat repudiandae non ducimus facere adipisci exercitationem sunt harum quia, facilis nostrum sequi eveniet inventore quidem eos beatae minima doloremque. Commodi?</span>
 			</div>
-		</li>
-		
+		</li>  -->
+
 	</ul>
 	<form id="chat-form" class="form-chat">
 		<div class="grid-x grid-margin-x">
@@ -44,7 +38,9 @@
 			</div>
 		</div>
 	</form>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+	<!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script> -->
+
+	<script src="{{ url_for('static', filename = 'node_modules/socket.io-client/dist/socket.io.js') }}"></script>
 	<script src="{{ url_for('static', filename = 'assets/js/jquery.js') }}"></script>
 	<script src="{{ url_for('static', filename = 'assets/js/background.js') }}"></script>
 	<script src="{{ url_for('static', filename = 'assets/js/localStorage.js') }}"></script>
@@ -63,7 +59,7 @@
 				`
 			);
 		}
-	
+
 		function rba_random(){
 			var r = function () { return Math.floor(Math.random()*256) };
 			return "rgb(" + r() + "," + r() + "," + r() + ")";

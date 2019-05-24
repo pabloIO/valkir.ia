@@ -1,6 +1,6 @@
 import sys
 import os.path
-import json 
+import json
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 # from models import sesion
@@ -14,6 +14,7 @@ class LoginCtrl(object):
     @staticmethod
     def login(db, request, response):
         try:
+            print('lllego')
             res = {
                 'success': False,
             }
@@ -32,8 +33,8 @@ class LoginCtrl(object):
                 res['token'] = uuid.uuid4().hex,
                 res['sesion'] = newSession.id,
                 res['socket_channel'] = exists.canal_socket,
-                res['_conversation_id'] = exists._conversation_id 
-                res['url_to'] = str.format('{0}:{1}/chat_room',  'http://localhost', env['PORT'])
+                res['_conversation_id'] = exists._conversation_id
+                res['url_to'] = str.format('{0}:{1}/chat_room',  'http://192.168.0.107', env['PORT'])
             else:
                 if not request['username']:
                     res['msg'] = 'Debes introducir el nombre de usuario'
@@ -56,13 +57,12 @@ class LoginCtrl(object):
                 res['username'] = newUser.nombre_usuario
                 res['token'] = uuid.uuid4().hex
                 res['socket_channel'] = newUser.canal_socket,
-                res['_conversation_id'] = newUser._conversation_id 
-                res['url_to'] = str.format('{0}:{1}/chat_room', 'http://localhost', env['PORT'])
+                res['_conversation_id'] = newUser._conversation_id
+                res['url_to'] = str.format('{0}:{1}/chat_room', 'http://192.168.0.107', env['PORT'])
+                print(res)
         except IntegrityError as e:
             print(e)
             db.session.rollback()
             res['msg'] = 'Nombre de usuario existente'
         finally:
             return response(json.dumps(res), mimetype='application/json')
-
-        

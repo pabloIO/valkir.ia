@@ -4,7 +4,7 @@ function login(){
     objetoVariables = {
         username: $('#txt_user_name').val()
     }
-    ajaxPeticionJS('POST', 'http://localhost:3000/login', objetoVariables);
+    ajaxPeticionJS('POST', 'http://192.168.0.107:3000/login', objetoVariables);
 }
 
 
@@ -23,4 +23,3 @@ function ajaxPeticionJS(metodo, ruta, request = []){
         }
     });
 }
-
